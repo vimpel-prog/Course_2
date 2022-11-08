@@ -2,7 +2,7 @@ import java.time.LocalDate;
 import java.util.*;
 
 public class DateBook {
-    Map<Integer, Task> taskMap = new HashMap<>();
+    private final Map<Integer, Task> taskMap = new HashMap<>();
 
     public void addTask(Task task) {
         taskMap.put(task.getId(), task);
@@ -19,6 +19,9 @@ public class DateBook {
     }
 
     public void deleteTask(int id) {
+        if(!taskMap.containsKey(id)){
+            throw new TaskNotFoundException("Такой задачи нет");
+        }
         taskMap.remove(id);
     }
 
